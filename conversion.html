@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Conversion</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+    .fa-anchor,.fa-coffee {font-size:200px}
+    </style>
+  </head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-win8-olive w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-win8-olive" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="index.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Home</a>
+    <a href="conversion.html" class="w3-bar-item w3-button w3-padding-large w3-white">Conversion</a>
+    <a href="tax.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Income Tax Calculator</a>
+    <a href="factorial.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Factorial</a>
+    <a href="payroll.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Simple Payroll</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="conversion.html" class="w3-bar-item w3-button w3-padding-large">Conversion</a>
+    <a href="tax.html" class="w3-bar-item w3-button w3-padding-large">Income Tax Calculator</a>
+    <a href="factorial.html" class="w3-bar-item w3-button w3-padding-large">Factorial</a>
+    <a href="payroll.html" class="w3-bar-item w3-button w3-padding-large">Simple Payroll</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-win8-olive" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">Conversion</h1>
+  <p class="w3-xlarge">Assignment #1</p>
+</header>
+
+<!-- First Grid -->
+<!-- Temperature -->
+<div id="conversion" class="w3-row-padding w3-center w3-padding-64 w3-container">
+  <div class="innercontent">
+    <div class="converttemp">
+      <div class=left-container">
+          <input type="number" name="celsius" id="celsius">
+          <label>Celsius</label>
+      </div>
+      <p class="equal">=</p>
+      <div class="right-container">
+        <input type="number" name="fahrenheit" id="fahrenheit">
+        <label>Fahrenheit</label>   
+    </div>
+  </div>
+  <div class="formula">
+    <label class="label">Answer:</label>
+    <p class="equation" id="temperature-equation"></p>
+  </div>
+</div>
+  <!-- Feet to Meters -->
+  <div class="innerContent">
+    <div class="converter">
+      <div class="left-container">
+        <input type="number" name="feet" id="feet">
+        <label>Feet</label>
+      </div>
+      <p class="equal">=</p>
+      <div class="right-container">
+        <input type="number" name="meters" id="meters">
+        <label>Meters</label>
+      </div>
+    </div>
+      <div class="formula">
+            <label class="label">Answer:</label>
+            <p class="equation" id="lenght-equation"></p>
+      </div>
+    </div>
+  </div>
+<script>
+
+    const celsius = document.getElementById("celsius")
+    const fahrenheit = document.getElementById("fahrenheit")
+    const temperatureEq = document.getElementById("temperature-equation")
+    const meter = document.getElementById("meters")
+    const feet = document.getElementById("feet")
+    const lenghtEq = document.getElementById("lenght-equation")
+
+    const convertTemp = (event) =>{
+
+      const tempType = event.target.name
+      const tempVal = event.target.value
+
+      if(tempVal === ''){
+        celsius.value = ''
+        fahrenheit.value = ''
+        temperatureEq.innerHTML = ''
+      } else if(tempType === 'celsius'){
+        const x = (tempVal * 9/5) +32
+        fahrenheit.value = x
+        temperatureEq.innerHTML = 'The ' + celsius.value + ' celsius is equivalent to ' + x + ' fahrenheit'
+      } else if(tempType === 'fahrenheit'){
+        const x = (tempVal - 32) * (5/9)
+        celsius.value = x
+        temperatureEq.innerHTML = 'The ' + fahrenheit.value + ' fahrenheit is equivalent to ' + x + ' celsius'
+      }
+    }
+
+    const convertLenght = (event)=> {
+      const lengthType = event.target.name
+      const lengthVal = event.target.value
+
+      if(lengthVal === ''){
+        feet.value = ''
+        meter.value = ''
+        lenghtEq.innerHTML = ''
+      } else if(lengthType === 'feet'){
+        const x = Math.round((lengthVal*12)*(2.54/100)*1000000)/1000000
+        meter.value = x
+        lenghtEq.innerHTML ='In ' + feet.value + ' feet is equivalent to ' + x + ' meter' 
+      } else if(lengthType === 'meters'){
+        const x = Math.round((lengthVal*100)*(1/2.54)*(1/12)*1000000)/1000000
+        feet.value = x
+        lenghtEq.innerHTML = 'In ' + meter.value + ' meter is equivalent to' + x + ' feet'
+      }
+    }
+
+    celsius.addEventListener("focus", convertTemp)
+    celsius.addEventListener("keyup",convertTemp)
+    fahrenheit.addEventListener("focus", convertTemp)
+    fahrenheit.addEventListener("keyup",convertTemp)
+    feet.addEventListener("focus",convertLenght)
+    feet.addEventListener("keyup",convertLenght)
+    meter.addEventListener("focus", convertLenght)
+    meter.addEventListener("keyup", convertLenght)
+</script>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>
